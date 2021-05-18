@@ -19,18 +19,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  String sInitialServer = 'Amnennar';
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +36,33 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         titleSpacing: 10.0,
       ),
-      body: Center(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: SafeArea(
+        top: false,         // pour permettre les notifs venant du haut de l'ecran ?
+        child: Container(
+          color: Colors.orange.withAlpha(40),
+          alignment: Alignment.center,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  ButtonBar(
+                    children: [
+                      DropdownButton(
+                        items: <String>['server1','server2','server3'].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem(
+                            value: value,
+                            child: Text(value)
+                            );
+                        }
+                      ).toList(),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ]),
+      ),
+      )
     );
   }
 }
