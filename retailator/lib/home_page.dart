@@ -23,9 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
+    // This method is rerun every time setState is called==
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
@@ -37,9 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
         titleSpacing: 10.0,
       ),
       body: SafeArea(
-        top: false,         // pour permettre les notifs venant du haut de l'ecran ?
+        top: false,         // pour permettre les notifs venant du haut de l'écran ?
         child: Container(
-          color: Colors.orange.withAlpha(40),
+          decoration: BoxDecoration(color: Colors.orange.withAlpha(40)),
           alignment: Alignment.center,
           child: Column(
             children: [
@@ -48,10 +46,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   ButtonBar(
                     children: [
                       DropdownButton(
-                        items: <String>['server1','server2','server3'].map<DropdownMenuItem<String>>((String value) {
+                        value: sInitialServer,
+                        //dropdownColor: Colors.white54,
+                        hint: Text('Select server'),
+                        onChanged: (String newValue){
+                          setState(() {
+                            sInitialServer = newValue;
+                          });
+                        },
+                        items: <String>['Amnennar','server2','server3']
+                            .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem(
-                            value: value,
-                            child: Text(value)
+                              value: value,
+                              child: Text(value)
                             );
                         }
                       ).toList(),
